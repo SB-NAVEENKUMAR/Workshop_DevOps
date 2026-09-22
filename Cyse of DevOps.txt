@@ -1,0 +1,57 @@
+Life Cycle of DevOps
+
+Plan for how we will find bug
+
+code
+
+test
+
+deploy
+
+operate
+
+monitor
+
+
+
+Update status tools
+
+Git Hub issues
+jira
+desk
+
+code
+
+pycharm
+intelij
+
+deploy
+
+GitHub
+Versal
+
+operate
+
+execute the code in running deployment application environment
+
+monitor
+
+Recursively monitor the status and changes of the application
+
+grufana
+promithises
+
+
+
+
+requirement
+
+design
+
+develop
+
+test
+
+deploy
+
+maintains

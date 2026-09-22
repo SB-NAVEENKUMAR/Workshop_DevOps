@@ -1,0 +1,51 @@
+finding shell script 
+
+ps aux |greb filename
+kill pid
+
+
+directory managements structure
+
+
+/home
+
+	have all music,document,download,images
+
+/temp
+	all tempeaory data are contains
+
+/var
+	log and cache data management
+
+/opt
+	other application download data management
+
+
+/prog
+	contains all process id management in the meta-data format
+
+	
+
+
+privillages
+
+
+chmod abc
+
+a -> default users
+
+b -> group user
+
+c -> current user
+
+
+literals in chmod abc
+
+
+1 -> execute
+
+2 -> write
+
+4 -> read
+
+7 -> (1+2+4) read,write,execute

@@ -1,0 +1,24 @@
+Git Commands:
+
+git init
+
+git clone
+
+git status
+
+git add
+
+git commit -m ""
+
+git log
+
+git diff
+
+git push origin main
+
+git baranch
+
+git switch
+
+git pull
+

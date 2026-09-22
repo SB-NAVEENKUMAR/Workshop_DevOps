@@ -1,0 +1,18 @@
+Navigations Commands
+
+pwd
+ls
+cd
+rm
+touch
+
+Operation Command
+
+mv
+rmdir
+cp
+cpdir
+wim
+less
+
+
