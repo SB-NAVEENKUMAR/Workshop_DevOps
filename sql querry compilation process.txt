@@ -1,0 +1,56 @@
+application server -> querry cache -> querry passer -> querry planner -> optimizer -> inno DB Engine -> api -> connection polling -> data fetch from disk
+
+Description:
+
+SELECT * FROM CARTOON where show = "tom and jerry";
+
+split way
+
+	part 1 - select * from cartoon
+	part 2 - where show = "tom and jerry"
+
+first got the request to the application server to querry cache and check in past this like a request have if have means just return to by use of the past data, go next layer.
+
+querry passer it will it was split the entire querry to multiple part and send to the querry planner
+
+querry planner will do to planning the what task are done and how to be done. list the process schedule.
+
+querry optimizer will do choose and perform best algorithm to achieve the purpose of the task and achieve the tasks;
+
+call the innodb engine, it was maintain the meta data of the entire server structure and it was use api to give request and get response way to fetch the data.
+
+then go to the connection polling to collect and store the entire the conntection. api to get any of the onn connection from the connection polling and make process by use the connection
+
+
+
+
+MASTER AND SLAVE SERVER WORKING PROCESS:
+
+
+master machine -> bin loger -> slave machine
+              
+the master machine will update by use appkication.
+
+the binloger to note the all update.
+
+the the slave machine will use the binloger to update the slave machine.          
+
+
+the system follow the ACID PROPERTIES
+
+ATOMISITY
+	
+	not have duplicate and non real data and null data are not present.
+
+CONSISTANCY
+	
+	continuesly update the master to slave machines data.
+	
+ISOLATION
+	
+	both machine are isolated.
+	if master updae the slave will update, but if we update the slave not update the master machine.
+
+DURABILITY
+	
+	if master machine are failed then we recover the machine by use of the slave machine to switch their ip and make to recover the machine and its data.
