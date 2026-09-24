@@ -1,0 +1,3 @@
+psql -h localhost -p 5432 -U postgres -d postgre
+
+spsql -h localhost -p 5433 -U postgres -d postgres

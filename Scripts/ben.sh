@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo "=========================================="
+echo " 1. Running PostgreSQL System Processes"
+echo "=========================================="
+ps aux | grep postgres | grep -v grep
+
+echo -e "\n=========================================="
+echo " 2. Active Ports (Master: 5432 | Slave: 5433)"
+echo "=========================================="
+sudo ss -tulpn | grep postgres
+
+echo -e "\n=========================================="
+echo " 3. Database Readiness Check"
+echo "=========================================="
+echo -n "Master (Port 5432): "
+pg_isready -h localhost -p 5432
+
+echo -n "Slave  (Port 5433): "
+pg_isready -h localhost -p 5433
+echo "=========================================="
