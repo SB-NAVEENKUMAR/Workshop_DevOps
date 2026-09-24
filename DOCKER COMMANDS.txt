@@ -1,0 +1,57 @@
+initially we pull the docker resources
+
+command:
+
+	docker pull nginx
+
+we create and run the image
+
+command:
+
+	docker run nginx
+
+restart the docker environment
+
+command:
+
+	docker restart
+
+remove the docker
+
+command:
+
+	docker rm  -f continer_name
+
+	docker rm -f $(docker ps -aq)
+
+make the separate continer access and terminal access
+
+command:
+
+	docker run -it parrotsec/security bash
+
+list the all docker continer
+
+command:
+
+	docker ps
+	
+	docker ps -a
+
+
+
+other docker commands:
+
+
+docker run
+
+docker start
+
+docker stop
+
+docker ps
+
+docker restart
+
+docker rm
+

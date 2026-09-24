@@ -1,0 +1,5 @@
+connection establish of installed after we directly do query to process
+
+psql -h localhost -p 5432 -U postgres -d cartoon_db
+
+psql -h localhost -p 5433 -U postgres -d cartoon_db
