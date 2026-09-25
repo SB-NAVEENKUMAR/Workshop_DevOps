@@ -1,0 +1,286 @@
+REDIS:
+REMODE DICTIONARY SERVER
+
+
+
+
+PROBLEM:
+
+	IF ALL TIME WE FETCH THE DATA FROM SYSTEM DISK TO DATABASE IN EVERYTIME. IT WAS PROCESS DELAY IS MORE.
+
+SOLUTION:
+
+	SO THAT WE TRUBLESHOOT WE FOUND THE REDIS CONSEPT.
+
+
+WITHOUT REDIS:
+
+	APPLICATION -> MYSQL -> SYSTEM STORAGE DISK
+
+WITH REDIS:
+	
+	APPLICATION -> REDIS MEMEORY -> MYSQL -> SYSTEM STORAGE DISK
+
+PROCESS:
+
+	IT WAS FRONT OF THE MYSQL LATER. ONCE THE DATA ARE STORED IN THE REDIS. IF ANOTHER TIME USER ASK THE DATA, THE DATA ALREADY IN THE REDIS MEMORY, SO DIRECTLY RETURN THE REDIUS STORED DATA.
+
+
+
+COMMANDS:
+
+# ==========================================
+# 1. INSTALLATION & SERVICE SETUP
+# ==========================================
+
+sudo apt update
+
+sudo apt install redis-server -y
+
+sudo systemctl enable redis-server
+
+sudo systemctl start redis-server
+
+redis-cli ping
+
+
+
+# ==========================================
+# 2. STRING COMMANDS
+# ==========================================
+
+# Set value to a key
+
+redis-cli SET username "alice123"
+
+# Get value from a key
+
+redis-cli GET username
+
+# Set multiple strings at once
+
+redis-cli MSET user:2 "Bob" user:3 "Charlie"
+
+# Get multiple strings at once
+
+redis-cli MGET user:1 user:2 user:3
+
+# Get the length of a string value
+
+redis-cli STRLEN username
+
+# Increase key value by 1
+
+redis-cli INCR page_views
+
+# Decrease key value by 1
+
+redis-cli DECR page_views
+
+# Increase key value by specific number
+
+redis-cli INCRBY page_views 10
+
+# Decrease key value by specific number
+
+redis-cli DECRBY page_views 5
+
+# Append value to a key
+
+redis-cli APPEND username "_admin"
+
+
+
+# ==========================================
+# 3. KEY MANAGEMENT & EXPIRY
+# ==========================================
+
+# Check if a key exists
+redis-cli EXISTS username
+# Get data type of the key
+
+redis-cli TYPE username
+
+# Set expiration time in seconds
+
+redis-cli SET session_token "abc123xyz"
+
+redis-cli EXPIRE session_token 60
+
+# Check remaining TTL in seconds
+
+redis-cli TTL session_token
+
+# Remove expiration (make permanent)
+
+redis-cli PERSIST session_token
+
+# Find all keys matching a pattern
+
+redis-cli KEYS user*
+
+# Delete a key
+
+redis-cli DEL username
+
+
+
+# ==========================================
+# 4. LIST COMMANDS
+# ==========================================
+
+# Add elements to the head (left)
+
+redis-cli LPUSH mylist "apple" "banana"
+
+# Add elements to the tail (right)
+
+redis-cli RPUSH mylist "cherry"
+
+# Find the length of the list
+
+redis-cli LLEN mylist
+
+# Get a sublist using a range (start, end)
+
+redis-cli LRANGE mylist 0 2
+
+# Get element at a specific index
+
+redis-cli LINDEX mylist 0
+
+# Update element at a specific index
+
+redis-cli LSET mylist 0 "orange"
+
+# Remove element from the top (left)
+
+redis-cli LPOP mylist 1
+
+# Remove element from the bottom (right)
+
+redis-cli RPOP mylist 1
+
+# Remove matching occurrences of an element
+
+redis-cli LREM mylist 1 "banana"
+
+
+
+# ==========================================
+# 5. SET COMMANDS
+# ==========================================
+
+# Add unique elements to a set
+
+redis-cli SADD cartoons "BEN_10" "TOM&JERRY" "SHIN_CHAN"
+
+# Get all members of a set
+
+redis-cli SMEMBERS cartoons
+
+# Check if a member exists in a set
+
+redis-cli SISMEMBER cartoons "BEN_10"
+
+# Count elements in a set
+
+redis-cli SCARD cartoons
+
+# Remove an element from a set
+
+redis-cli SREM cartoons "SHIN_CHAN"
+
+# Set operations with another set
+
+redis-cli SADD other_cartoons "TOM&JERRY" "POPEYE"
+
+# Find common members (Intersection)
+
+redis-cli SINTER cartoons other_cartoons
+
+# Combine members without duplicates (Union)
+
+redis-cli SUNION cartoons other_cartoons
+
+# Find members unique to the first set (Difference)
+
+redis-cli SDIFF cartoons other_cartoons
+
+
+
+
+# ==========================================
+# 6. HASH COMMANDS (HASHMAPS)
+# ==========================================
+
+# Set a field in a hash map
+
+redis-cli HSET student:1 name "John" age "22" grade "A"
+
+# Get a specific field value from a hash
+
+redis-cli HGET student:1 name
+
+# Get multiple field values from a hash
+
+redis-cli HMGET student:1 name age
+
+# Get all fields and values in a hash
+
+redis-cli HGETALL student:1
+
+# Check if a specific field exists
+
+redis-cli HEXISTS student:1 grade
+
+# Count number of fields in a hash
+
+redis-cli HLEN student:1
+
+# Get all field names in a hash
+
+redis-cli HKEYS student:1
+
+# Get all values in a hash
+
+redis-cli HVALS student:1
+
+# Delete a field from a hash
+
+redis-cli HDEL student:1 grade
+
+
+
+# ==========================================
+# 7. SORTED SET (ZSET) COMMANDS
+# ==========================================
+
+# Add elements with scores to a sorted set
+
+redis-cli ZADD leaderboard 100 "alice" 200 "bob" 150 "charlie"
+
+# Get elements within a range ordered by score (with their scores)
+
+
+redis-cli ZRANGE leaderboard 0 -1 WITHSCORES
+
+# Get elements ordered by score descending (high to low)
+
+redis-cli ZREVRANGE leaderboard 0 -1 WITHSCORES
+
+# Count total elements in a sorted set
+
+redis-cli ZCARD leaderboard
+
+# Get the score of a specific member
+
+redis-cli ZSCORE leaderboard "bob"
+
+# Increase a member's score
+
+redis-cli ZINCRBY leaderboard 50 "alice"
+
+# Remove an element from a sorted set
+
+redis-cli ZREM leaderboard "alice"
